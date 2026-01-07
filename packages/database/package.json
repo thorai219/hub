@@ -1,0 +1,12 @@
+{
+  "name": "@repo/database",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'Database package - Prisma will go here'",
+    "build": "echo 'Building database package'"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

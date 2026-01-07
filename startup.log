@@ -1,0 +1,63 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.010  000.010: --- NVIM STARTING ---
+000.131  000.121: event init
+000.197  000.066: early init
+000.237  000.040: locale set
+000.270  000.033: init first window
+000.509  000.239: inits 1
+000.522  000.013: window checked
+000.525  000.003: parsing arguments
+001.392  000.354  000.354: require('vim.shared')
+002.333  000.459  000.459: require('vim._options')
+002.339  000.943  000.484: require('vim._editor')
+002.341  001.433  000.135: require('vim._init_packages')
+002.343  000.385: init lua interpreter
+002.432  000.089: expanding arguments
+002.467  000.035: inits 2
+002.783  000.316: init highlight
+002.784  000.001: waiting for UI
+003.034  000.250: done waiting for UI
+003.045  000.010: clear screen
+003.199  000.154: init default mappings & autocommands
+003.633  000.057  000.057: sourcing /usr/share/nvim/runtime/ftplugin.vim
+003.682  000.027  000.027: sourcing /usr/share/nvim/runtime/indent.vim
+004.556  000.500  000.500: require('lazy')
+004.593  000.018  000.018: require('ffi')
+004.889  000.293  000.293: require('vim.loader')
+005.056  000.143  000.143: require('vim.fs')
+005.132  000.230  000.086: require('lazy.stats')
+005.254  000.106  000.106: require('lazy.core.util')
+005.338  000.082  000.082: require('lazy.core.config')
+005.523  000.086  000.086: require('lazy.core.handler')
+005.879  000.079  000.079: require('lazy.pkg')
+005.883  000.267  000.188: require('lazy.core.meta')
+005.889  000.364  000.098: require('lazy.core.plugin')
+005.893  000.553  000.103: require('lazy.core.loader')
+006.176  000.031  000.031: require('lazy.core.fragments')
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.012  000.012: --- NVIM STARTING ---
+000.148  000.136: event init
+000.258  000.110: early init
+000.316  000.058: locale set
+000.373  000.057: init first window
+000.754  000.381: inits 1
+000.762  000.008: window checked
+000.765  000.003: parsing arguments
+001.792  000.364  000.364: require('vim.shared')
+002.513  000.216  000.216: require('vim._options')
+002.515  000.719  000.502: require('vim._editor')
+002.516  001.231  000.148: require('vim._init_packages')
+002.517  000.520: init lua interpreter
+003.044  000.527: expanding arguments
+003.070  000.026: inits 2
+003.243  000.173: init highlight

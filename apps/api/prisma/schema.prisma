@@ -1,0 +1,228 @@
+// Prisma schema for Food Costing SaaS
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==================== USER & AUTH ====================
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  firstName String?
+  lastName  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  restaurants Restaurant[]
+
+  @@map("users")
+}
+
+// ==================== RESTAURANT ====================
+
+model Restaurant {
+  id          String   @id @default(cuid())
+  name        String
+  address     String?
+  phone       String?
+  cuisineType String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  ingredients     Ingredient[]
+  recipes         Recipe[]
+  menuItems       MenuItem[]
+  inventoryCounts InventoryCount[]
+  purchases       Purchase[]
+  salesRecords    SalesRecord[]
+
+  @@map("restaurants")
+}
+
+// ==================== INGREDIENTS ====================
+
+enum IngredientUnit {
+  LBS
+  OZ
+  KG
+  G
+  GALLON
+  LITER
+  ML
+  COUNT
+  CUP
+  TBSP
+  TSP
+}
+
+enum IngredientCategory {
+  PROTEIN
+  PRODUCE
+  PANTRY
+  SAUCE
+  DAIRY
+  SPICE
+  OTHER
+}
+
+model Ingredient {
+  id           String             @id @default(cuid())
+  name         String
+  unit         IngredientUnit
+  pricePerUnit Decimal            @db.Decimal(10, 4)
+  category     IngredientCategory
+  supplier     String?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  recipeIngredients RecipeIngredient[]
+  inventoryCounts   InventoryCount[]
+  purchaseItems     PurchaseItem[]
+
+  @@map("ingredients")
+}
+
+// ==================== RECIPES ====================
+
+model Recipe {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  servings    Int      @default(1)
+  totalCost   Decimal  @db.Decimal(10, 2)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  ingredients RecipeIngredient[]
+  menuItems   MenuItem[]
+
+  @@map("recipes")
+}
+
+model RecipeIngredient {
+  id       String  @id @default(cuid())
+  quantity Decimal @db.Decimal(10, 4)
+  cost     Decimal @db.Decimal(10, 4)
+
+  recipeId     String
+  recipe       Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([recipeId, ingredientId])
+  @@map("recipe_ingredients")
+}
+
+// ==================== MENU ITEMS ====================
+
+model MenuItem {
+  id              String   @id @default(cuid())
+  name            String
+  description     String?
+  sellingPrice    Decimal  @db.Decimal(10, 2)
+  foodCostPercent Decimal  @db.Decimal(5, 2)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  recipeId String
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  salesRecords SalesRecord[]
+
+  @@map("menu_items")
+}
+
+// ==================== INVENTORY ====================
+
+model InventoryCount {
+  id        String   @id @default(cuid())
+  quantity  Decimal  @db.Decimal(10, 4)
+  value     Decimal  @db.Decimal(10, 2)
+  countedAt DateTime @default(now())
+  countedBy String?
+  notes     String?
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+
+  @@map("inventory_counts")
+}
+
+// ==================== PURCHASES ====================
+
+model Purchase {
+  id          String   @id @default(cuid())
+  supplier    String
+  invoiceNo   String?
+  totalAmount Decimal  @db.Decimal(10, 2)
+  purchasedAt DateTime @default(now())
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  items PurchaseItem[]
+
+  @@map("purchases")
+}
+
+model PurchaseItem {
+  id       String  @id @default(cuid())
+  quantity Decimal @db.Decimal(10, 4)
+  price    Decimal @db.Decimal(10, 2)
+
+  purchaseId String
+  purchase   Purchase @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+
+  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@map("purchase_items")
+}
+
+// ==================== SALES ====================
+
+model SalesRecord {
+  id         String   @id @default(cuid())
+  quantity   Int
+  totalPrice Decimal  @db.Decimal(10, 2)
+  soldAt     DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+
+  menuItemId String?
+  menuItem   MenuItem? @relation(fields: [menuItemId], references: [id], onDelete: SetNull)
+
+  @@map("sales_records")
+}
