@@ -1,0 +1,778 @@
+{
+  "info": {
+    "name": "Food Costing SaaS API",
+    "description": "Complete API collection for the food costing SaaS application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    },
+    {
+      "key": "restaurantId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Restaurants",
+      "item": [
+        {
+          "name": "Create Restaurant",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My Restaurant\",\n  \"address\": \"123 Main St\",\n  \"phone\": \"555-0123\",\n  \"cuisineType\": \"Italian\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants"]
+            }
+          }
+        },
+        {
+          "name": "Get All Restaurants",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants"]
+            }
+          }
+        },
+        {
+          "name": "Get Restaurant",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Restaurant",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Restaurant Name\",\n  \"phone\": \"555-9999\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Restaurant",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ingredients",
+      "item": [
+        {
+          "name": "Create Ingredient",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Chicken Breast\",\n  \"unit\": \"LBS\",\n  \"pricePerUnit\": 3.50,\n  \"category\": \"PROTEIN\",\n  \"supplier\": \"Sysco\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/ingredients",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "ingredients"]
+            }
+          }
+        },
+        {
+          "name": "Get All Ingredients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/ingredients",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "ingredients"]
+            }
+          }
+        },
+        {
+          "name": "Get Ingredient",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/ingredients/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "ingredients", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Update Ingredient",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pricePerUnit\": 4.00\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/ingredients/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "ingredients", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Ingredient",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/ingredients/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "ingredients", ":id"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recipes",
+      "item": [
+        {
+          "name": "Create Recipe",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Grilled Chicken\",\n  \"description\": \"Classic grilled chicken breast\",\n  \"servings\": 4,\n  \"totalCost\": 14.00,\n  \"ingredients\": [\n    {\n      \"ingredientId\": \"ingredient-id-here\",\n      \"quantity\": 2,\n      \"cost\": 7.00\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/recipes",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "recipes"]
+            }
+          }
+        },
+        {
+          "name": "Get All Recipes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/recipes",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "recipes"]
+            }
+          }
+        },
+        {
+          "name": "Get Recipe",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/recipes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "recipes", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Update Recipe",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Recipe Name\",\n  \"servings\": 6\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/recipes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "recipes", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Recipe",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/recipes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "recipes", ":id"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Menu Items",
+      "item": [
+        {
+          "name": "Create Menu Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Grilled Chicken Plate\",\n  \"description\": \"Delicious grilled chicken with sides\",\n  \"recipeId\": \"recipe-id-here\",\n  \"sellingPrice\": 18.99,\n  \"foodCostPercent\": 28.5,\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/menu-items",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "menu-items"]
+            }
+          }
+        },
+        {
+          "name": "Get All Menu Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/menu-items",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "menu-items"]
+            }
+          }
+        },
+        {
+          "name": "Get Menu Item",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/menu-items/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "menu-items", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Update Menu Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sellingPrice\": 19.99,\n  \"isActive\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/menu-items/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "menu-items", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Menu Item",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/menu-items/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "menu-items", ":id"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Purchases",
+      "item": [
+        {
+          "name": "Create Purchase",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplier\": \"Sysco\",\n  \"invoiceNo\": \"INV-12345\",\n  \"totalAmount\": 450.75,\n  \"purchasedAt\": \"2026-01-09T10:30:00Z\",\n  \"notes\": \"Weekly delivery\",\n  \"items\": [\n    {\n      \"ingredientId\": \"ingredient-id-1\",\n      \"quantity\": 50,\n      \"price\": 175.00\n    },\n    {\n      \"ingredientId\": \"ingredient-id-2\",\n      \"quantity\": 100,\n      \"price\": 275.75\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/purchases",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "purchases"]
+            }
+          }
+        },
+        {
+          "name": "Get All Purchases",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/purchases",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "purchases"]
+            }
+          }
+        },
+        {
+          "name": "Get Purchase",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/purchases/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "purchases", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Update Purchase",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceNo\": \"INV-12345-UPDATED\",\n  \"notes\": \"Updated notes\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/purchases/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "purchases", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Purchase",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/purchases/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "purchases", ":id"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Create Inventory Count",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ingredientId\": \"ingredient-id-here\",\n  \"quantity\": 25.5,\n  \"value\": 89.25,\n  \"countedAt\": \"2026-01-09T18:00:00Z\",\n  \"countedBy\": \"John Doe\",\n  \"notes\": \"End of day count\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/inventory",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "inventory"]
+            }
+          }
+        },
+        {
+          "name": "Get All Inventory Counts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/inventory",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "inventory"]
+            }
+          }
+        },
+        {
+          "name": "Get Latest Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/inventory/latest",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "inventory", "latest"]
+            },
+            "description": "Get the most recent count for each ingredient (current stock levels)"
+          }
+        },
+        {
+          "name": "Get Inventory Count",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/inventory/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "inventory", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory by Date Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/inventory?startDate=2026-01-01&endDate=2026-01-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "inventory"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-01-31"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory by Ingredient",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/inventory?ingredientId=:ingredientId",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "inventory"],
+              "query": [
+                {
+                  "key": "ingredientId",
+                  "value": ":ingredientId"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Inventory Count",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 30.0,\n  \"value\": 105.00,\n  \"notes\": \"Corrected count\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/inventory/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "inventory", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Inventory Count",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/inventory/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "inventory", ":id"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sales",
+      "item": [
+        {
+          "name": "Create Sales Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"menuItemId\": \"menu-item-id-here\",\n  \"quantity\": 3,\n  \"totalPrice\": 56.97,\n  \"soldAt\": \"2026-01-09T12:30:00Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/sales",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "sales"]
+            }
+          }
+        },
+        {
+          "name": "Get All Sales Records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/sales",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "sales"]
+            }
+          }
+        },
+        {
+          "name": "Get Sales by Date Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/sales?startDate=2026-01-01&endDate=2026-01-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "sales"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2026-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-01-31"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Sales by Menu Item",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/sales?menuItemId=:menuItemId",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "sales"],
+              "query": [
+                {
+                  "key": "menuItemId",
+                  "value": ":menuItemId"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Sales Record",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/sales/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "sales", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Update Sales Record",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 4,\n  \"totalPrice\": 75.96\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/sales/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "sales", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Sales Record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/restaurants/{{restaurantId}}/sales/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["restaurants", "{{restaurantId}}", "sales", ":id"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      }
+    }
+  ]
+}

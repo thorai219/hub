@@ -50,9 +50,11 @@ export class AuthController {
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 
-      res.status(201).json({
+      const response = {
         user,
-      });
+      };
+
+      res.status(201).json(response);
     },
   );
 
@@ -90,14 +92,18 @@ export class AuthController {
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 
-      res.json({
+      const response = {
         user: {
           id: user.id,
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
         },
-      });
+      };
+
+      res.json(response);
     },
   );
 
