@@ -16,7 +16,7 @@ export default function InventoryPage({
     <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Inventory</h1>
-        <Button variant="destructive" size={"lg"}>
+        <Button variant="destructive" size="lg">
           Record Count
         </Button>
       </div>
