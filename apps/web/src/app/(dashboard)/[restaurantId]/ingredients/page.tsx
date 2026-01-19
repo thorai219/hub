@@ -1,7 +1,18 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { IngredientForm } from "@/components/forms/domain";
 
-export default function IngredientsPage({ params }: { params: { restaurantId: string } }) {
+export default function IngredientsPage({
+  params,
+}: {
+  params: { restaurantId: string };
+}) {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -14,7 +25,7 @@ export default function IngredientsPage({ params }: { params: { restaurantId: st
           <CardDescription>Manage your ingredients and pricing</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">Ingredient list coming soon...</p>
+          <IngredientForm />
         </CardContent>
       </Card>
     </div>
