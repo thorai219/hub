@@ -14,7 +14,7 @@ export default function IngredientsPage({
   params: { restaurantId: string };
 }) {
   return (
-    <div>
+    <div style={{ maxWidth: "100rem", margin: "auto" }}>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Ingredients</h1>
         <Button>Add Ingredient</Button>

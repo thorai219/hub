@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Food Costing SaaS',
-  description: 'Restaurant food costing and inventory management',
+  title: "Food Costing SaaS",
+  description: "Restaurant food costing and inventory management",
 };
 
 export default function RootLayout({
@@ -13,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-background text-foreground antialiased">{children}</body>
+      <body className="min-h-screen bg-background text-foreground antialiased max-w-7xl m-auto">
+        {children}
+      </body>
     </html>
   );
 }

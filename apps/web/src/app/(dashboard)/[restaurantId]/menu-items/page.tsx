@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { MenuItemForm } from "@/components/forms/domain";
 
 export default function MenuItemsPage({
   params,
@@ -16,9 +17,7 @@ export default function MenuItemsPage({
     <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Menu Items</h1>
-        <Button variant="destructive" size="sm">
-          Add Menu Item
-        </Button>
+        <Button size="sm">Add Menu Item</Button>
       </div>
       <Card>
         <CardHeader>
@@ -28,9 +27,7 @@ export default function MenuItemsPage({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">
-            Menu items list coming soon...
-          </p>
+          <MenuItemForm />
         </CardContent>
       </Card>
     </div>
