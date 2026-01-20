@@ -1,22 +1,31 @@
-'use client';
+"use client";
 
-import { useForm, useFieldArray } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { Button } from '@/components/ui/button';
-import { InputField, SelectField, NumberField, TextareaField } from '../fields';
-import type { Ingredient } from '@repo/types';
+import { useForm, useFieldArray } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { InputField, SelectField, NumberField, TextareaField } from "../fields";
+import type { Ingredient } from "@repo/types";
 
 const recipeIngredientSchema = z.object({
-  ingredientId: z.string({ message: 'Please select an ingredient' }).min(1),
-  quantity: z.number({ message: 'Quantity is required' }).positive({ message: 'Quantity must be positive' }),
+  ingredientId: z.string({ message: "Please select an ingredient" }).min(1),
+  quantity: z
+    .number({ message: "Quantity is required" })
+    .positive({ message: "Quantity must be positive" }),
 });
 
 const recipeSchema = z.object({
-  name: z.string({ message: 'Name is required' }).min(1, { message: 'Name is required' }),
+  name: z
+    .string({ message: "Name is required" })
+    .min(1, { message: "Name is required" }),
   description: z.string().optional(),
-  servings: z.number({ message: 'Servings is required' }).int().positive({ message: 'Servings must be a positive number' }),
-  ingredients: z.array(recipeIngredientSchema).min(1, { message: 'At least one ingredient is required' }),
+  servings: z
+    .number({ message: "Servings is required" })
+    .int()
+    .positive({ message: "Servings must be a positive number" }),
+  ingredients: z
+    .array(recipeIngredientSchema)
+    .min(1, { message: "At least one ingredient is required" }),
 });
 
 type RecipeFormData = z.infer<typeof recipeSchema>;
@@ -24,7 +33,6 @@ type RecipeFormData = z.infer<typeof recipeSchema>;
 interface RecipeFormProps {
   defaultValues?: Partial<RecipeFormData>;
   availableIngredients: Ingredient[];
-  onSubmit: (data: RecipeFormData) => Promise<void>;
   onCancel?: () => void;
   isLoading?: boolean;
   submitLabel?: string;
@@ -33,10 +41,9 @@ interface RecipeFormProps {
 export function RecipeForm({
   defaultValues,
   availableIngredients,
-  onSubmit,
   onCancel,
   isLoading = false,
-  submitLabel = 'Save Recipe',
+  submitLabel = "Save Recipe",
 }: RecipeFormProps) {
   const {
     register,
@@ -47,14 +54,14 @@ export function RecipeForm({
     resolver: zodResolver(recipeSchema),
     defaultValues: {
       servings: 1,
-      ingredients: [{ ingredientId: '', quantity: 0 }],
+      ingredients: [{ ingredientId: "", quantity: 0 }],
       ...defaultValues,
     },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'ingredients',
+    name: "ingredients",
   });
 
   const ingredientOptions = availableIngredients.map((ing) => ({
@@ -62,8 +69,10 @@ export function RecipeForm({
     label: `${ing.name} (${ing.unit})`,
   }));
 
+  const handleRecipeformSubmit = () => {};
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleRecipeformSubmit)} className="space-y-6">
       <div className="space-y-4">
         <InputField
           label="Recipe Name"
@@ -71,7 +80,7 @@ export function RecipeForm({
           required
           error={errors.name?.message}
           disabled={isLoading}
-          {...register('name')}
+          {...register("name")}
         />
 
         <TextareaField
@@ -79,7 +88,7 @@ export function RecipeForm({
           placeholder="Brief description of the recipe (optional)"
           error={errors.description?.message}
           disabled={isLoading}
-          {...register('description')}
+          {...register("description")}
         />
 
         <NumberField
@@ -88,7 +97,7 @@ export function RecipeForm({
           required
           error={errors.servings?.message}
           disabled={isLoading}
-          {...register('servings', { valueAsNumber: true })}
+          {...register("servings", { valueAsNumber: true })}
         />
       </div>
 
@@ -99,7 +108,7 @@ export function RecipeForm({
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => append({ ingredientId: '', quantity: 0 })}
+            onClick={() => append({ ingredientId: "", quantity: 0 })}
             disabled={isLoading}
           >
             + Add Ingredient
@@ -107,7 +116,9 @@ export function RecipeForm({
         </div>
 
         {errors.ingredients?.root && (
-          <p className="text-sm text-destructive">{errors.ingredients.root.message}</p>
+          <p className="text-sm text-destructive">
+            {errors.ingredients.root.message}
+          </p>
         )}
 
         <div className="space-y-3">
@@ -115,7 +126,7 @@ export function RecipeForm({
             <div key={field.id} className="flex gap-3 items-start">
               <div className="flex-1">
                 <SelectField
-                  label={index === 0 ? 'Ingredient' : ''}
+                  label={index === 0 ? "Ingredient" : ""}
                   options={ingredientOptions}
                   placeholder="Select ingredient"
                   required
@@ -127,12 +138,14 @@ export function RecipeForm({
 
               <div className="w-32">
                 <NumberField
-                  label={index === 0 ? 'Quantity' : ''}
+                  label={index === 0 ? "Quantity" : ""}
                   placeholder="0"
                   required
                   error={errors.ingredients?.[index]?.quantity?.message}
                   disabled={isLoading}
-                  {...register(`ingredients.${index}.quantity`, { valueAsNumber: true })}
+                  {...register(`ingredients.${index}.quantity`, {
+                    valueAsNumber: true,
+                  })}
                 />
               </div>
 
@@ -166,7 +179,7 @@ export function RecipeForm({
           </Button>
         )}
         <Button type="submit" disabled={isLoading} className="flex-1">
-          {isLoading ? 'Saving...' : submitLabel}
+          {isLoading ? "Saving..." : submitLabel}
         </Button>
       </div>
     </form>

@@ -1,7 +1,18 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { RecipeForm } from "@/components/forms/domain";
 
-export default function RecipesPage({ params }: { params: { restaurantId: string } }) {
+export default function RecipesPage({
+  params,
+}: {
+  params: { restaurantId: string };
+}) {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -14,7 +25,7 @@ export default function RecipesPage({ params }: { params: { restaurantId: string
           <CardDescription>Build and cost your recipes</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">Recipe list coming soon...</p>
+          <RecipeForm availableIngredients={[]} />
         </CardContent>
       </Card>
     </div>
