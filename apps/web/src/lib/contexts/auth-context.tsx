@@ -1,16 +1,21 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { authApi } from '@/lib/api/auth';
-import type { User } from '@repo/types';
+import { createContext, useContext, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { authApi } from "@/lib/api/auth";
+import type { User } from "@repo/types";
 
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, password: string, firstName?: string, lastName?: string) => Promise<void>;
+  signup: (
+    email: string,
+    password: string,
+    firstName?: string,
+    lastName?: string,
+  ) => Promise<void>;
   logout: () => Promise<void>;
   refetchUser: () => Promise<void>;
 }
@@ -42,19 +47,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     const response = await authApi.login({ email, password });
     setUser(response.user);
-    router.push('/restaurants');
+    router.push("/restaurants");
   };
 
-  const signup = async (email: string, password: string, firstName?: string, lastName?: string) => {
-    const response = await authApi.signup({ email, password, firstName, lastName });
+  const signup = async (
+    email: string,
+    password: string,
+    firstName?: string,
+    lastName?: string,
+  ) => {
+    const response = await authApi.signup({
+      email,
+      password,
+      firstName,
+      lastName,
+    });
     setUser(response.user);
-    router.push('/restaurants');
+    router.push("/restaurants");
   };
 
   const logout = async () => {
     await authApi.logout();
     setUser(null);
-    router.push('/login');
+    router.push("/login");
   };
 
   const refetchUser = async () => {
@@ -81,7 +96,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }
