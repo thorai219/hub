@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/contexts/auth-context";
+import { Button } from "@/components/ui/button";
 
 interface NavItem {
   label: string;
@@ -23,6 +25,7 @@ const restaurantNavItems: NavItem[] = [
 export function Sidebar() {
   const params = useParams();
   const pathname = usePathname();
+  const { user, logout } = useAuth();
   const restaurantId = params?.restaurantId as string | undefined;
 
   // If no restaurant selected, show restaurant selection nav
@@ -79,13 +82,28 @@ export function Sidebar() {
           })}
         </nav>
 
-        <div className="mt-8 pt-8 border-t">
+        <div className="mt-8 pt-8 border-t space-y-2">
           <Link
             href="/restaurants"
             className="block px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
           >
             ← Switch Restaurant
           </Link>
+          {user && (
+            <div className="px-3 py-2">
+              <p className="text-xs text-muted-foreground mb-2">
+                {user.email}
+              </p>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => logout()}
+                className="w-full"
+              >
+                Logout
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </aside>

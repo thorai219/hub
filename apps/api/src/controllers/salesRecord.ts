@@ -59,7 +59,7 @@ export const createSalesRecord = asyncHandler(
       },
     });
 
-    res.status(201).json(salesRecord);
+    res.status(201).json({ salesRecord });
   },
 );
 
@@ -99,7 +99,7 @@ export const getSalesRecords = asyncHandler(
       orderBy: { soldAt: "desc" },
     });
 
-    res.json(salesRecords);
+    res.json({ salesRecords });
   },
 );
 
@@ -134,7 +134,7 @@ export const getSalesRecord = asyncHandler(
       throw new AppError("Sales record not found", 404);
     }
 
-    res.json(salesRecord);
+    res.json({ salesRecord });
   },
 );
 
@@ -199,7 +199,7 @@ export const updateSalesRecord = asyncHandler(
       },
     });
 
-    res.json(updated);
+    res.json({ salesRecord: updated });
   },
 );
 

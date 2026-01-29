@@ -1,15 +1,35 @@
-// Auth API functions
+import { apiClient } from './client';
+import type { User, AuthResponse } from '@repo/types';
+
+export interface SignupDto {
+  email: string;
+  password: string;
+  firstName?: string;
+  lastName?: string;
+}
+
+export interface LoginDto {
+  email: string;
+  password: string;
+}
+
 export const authApi = {
-  signup: async (data: any) => {
-    // Implementation coming soon
+  signup: async (data: SignupDto): Promise<AuthResponse> => {
+    const response = await apiClient.post('/auth/signup', data);
+    return response.data;
   },
-  login: async (data: any) => {
-    // Implementation coming soon
+
+  login: async (data: LoginDto): Promise<AuthResponse> => {
+    const response = await apiClient.post('/auth/login', data);
+    return response.data;
   },
-  logout: async () => {
-    // Implementation coming soon
+
+  logout: async (): Promise<void> => {
+    await apiClient.post('/auth/logout');
   },
-  getMe: async () => {
-    // Implementation coming soon
+
+  getCurrentUser: async (): Promise<User> => {
+    const response = await apiClient.get('/auth/me');
+    return response.data;
   },
 };

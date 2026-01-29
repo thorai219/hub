@@ -27,7 +27,7 @@ export class RestaurantController {
         },
       });
 
-      res.status(201).json({ restaurant });
+      res.status(201).json(restaurant);
     },
   );
 
@@ -43,7 +43,7 @@ export class RestaurantController {
         orderBy: { createdAt: "desc" },
       });
 
-      res.json({ restaurants });
+      res.json(restaurants);
     },
   );
 
@@ -51,7 +51,7 @@ export class RestaurantController {
   static getOne = asyncHandler(
     async (req: RestaurantRequest, res: Response): Promise<void> => {
       // Middleware already validated ownership and added req.restaurant
-      res.json({ restaurant: req.restaurant });
+      res.json(req.restaurant);
     },
   );
 
@@ -66,7 +66,7 @@ export class RestaurantController {
         data: validatedData,
       });
 
-      res.json({ restaurant });
+      res.json(restaurant);
     },
   );
 

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Link from "next/link";
+import { useAuth } from "@/lib/contexts/auth-context";
 import {
   Card,
   CardContent,
@@ -28,6 +29,8 @@ type LoginForm = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -38,10 +41,11 @@ export default function LoginPage() {
 
   const onSubmit = async (data: LoginForm) => {
     setIsLoading(true);
+    setError(null);
     try {
-      console.log("Login data:", data);
-    } catch (error) {
-      console.error("Login error:", error);
+      await login(data.email, data.password);
+    } catch (err: any) {
+      setError(err.response?.data?.message || "Failed to login. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -60,6 +64,11 @@ export default function LoginPage() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
+        {error && (
+          <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md">
+            {error}
+          </div>
+        )}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <InputField
             label="Email"
