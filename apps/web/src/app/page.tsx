@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
@@ -15,7 +21,9 @@ export default function Home() {
           </p>
           <div className="flex gap-4 justify-center mt-8">
             <Button size="lg">Get Started</Button>
-            <Button size="lg" variant="outline">Learn More</Button>
+            <Button size="lg" variant="outline">
+              Learn More
+            </Button>
           </div>
         </div>
 
@@ -32,7 +40,8 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                Manage your ingredient catalog with real-time pricing and supplier information.
+                Manage your ingredient catalog with real-time pricing and
+                supplier information.
               </p>
             </CardContent>
           </Card>
@@ -43,13 +52,12 @@ export default function Home() {
                 👨‍🍳 Recipes
                 <Badge>Ready</Badge>
               </CardTitle>
-              <CardDescription>
-                Build and cost your recipes
-              </CardDescription>
+              <CardDescription>Build and cost your recipes</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                Create recipes with ingredient lists and calculate accurate per-serving costs.
+                Create recipes with ingredient lists and calculate accurate
+                per-serving costs.
               </p>
             </CardContent>
           </Card>
@@ -60,13 +68,12 @@ export default function Home() {
                 🍽️ Menu Items
                 <Badge>Ready</Badge>
               </CardTitle>
-              <CardDescription>
-                Manage your menu pricing
-              </CardDescription>
+              <CardDescription>Manage your menu pricing</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                Link menu items to recipes and track food cost percentages in real-time.
+                Link menu items to recipes and track food cost percentages in
+                real-time.
               </p>
             </CardContent>
           </Card>
@@ -77,13 +84,12 @@ export default function Home() {
                 📊 Reports
                 <Badge>Ready</Badge>
               </CardTitle>
-              <CardDescription>
-                Analyze your costs
-              </CardDescription>
+              <CardDescription>Analyze your costs</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                Generate comprehensive food cost reports and profitability analysis.
+                Generate comprehensive food cost reports and profitability
+                analysis.
               </p>
             </CardContent>
           </Card>
@@ -92,7 +98,9 @@ export default function Home() {
         <Card className="mt-12">
           <CardHeader>
             <CardTitle>All Features</CardTitle>
-            <CardDescription>Complete restaurant management solution</CardDescription>
+            <CardDescription>
+              Complete restaurant management solution
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 gap-4">
