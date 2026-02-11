@@ -16,6 +16,7 @@
     "paths": {
       "@/*": ["./*"],
       "@lib/*": ["./lib/*"],
+      "@modules/*": ["./modules/*"],
       "@routes/*": ["./routes/*"],
       "@controllers/*": ["./controllers/*"],
       "@middleware/*": ["./middleware/*"],

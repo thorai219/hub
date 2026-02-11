@@ -6,7 +6,7 @@ import prisma from "@lib/prisma";
 import {
   createSalesRecordSchema,
   updateSalesRecordSchema,
-} from "@/validation/salesRecord";
+} from "./salesRecord.validations";
 import { Decimal } from "decimal.js";
 
 export const createSalesRecord = asyncHandler(

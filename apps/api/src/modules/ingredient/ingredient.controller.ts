@@ -6,7 +6,7 @@ import { asyncHandler } from "@utils/asyncHandler";
 import {
   createIngredientSchema,
   updateIngredientSchema,
-} from "@/validation/ingredient";
+} from "./ingredient.validations";
 
 export class IngredientController {
   // POST /restaurants/:restaurantId/ingredients

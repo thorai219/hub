@@ -6,7 +6,7 @@ import prisma from "@lib/prisma";
 import {
   createMenuItemSchema,
   updateMenuItemSchema,
-} from "@/validation/menuItem";
+} from "./menuItem.validations";
 import { Decimal } from "decimal.js";
 
 export const createMenuItem = asyncHandler(

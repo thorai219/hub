@@ -7,7 +7,7 @@ import {
   getMenuItem,
   updateMenuItem,
   deleteMenuItem,
-} from '@controllers/menuItem';
+} from "./menuItem.controller";
 
 const router = Router();
 

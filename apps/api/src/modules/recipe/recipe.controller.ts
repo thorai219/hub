@@ -3,7 +3,7 @@ import { RestaurantRequest } from "@middleware/restaurantOwnership";
 import { asyncHandler } from "@utils/asyncHandler";
 import { AppError } from "@middleware/errorHandler";
 import prisma from "@lib/prisma";
-import { createRecipeSchema, updateRecipeSchema } from "@/validation/recipe";
+import { createRecipeSchema, updateRecipeSchema } from "./recipe.validations";
 import { Decimal } from "decimal.js";
 
 export const createRecipe = asyncHandler(

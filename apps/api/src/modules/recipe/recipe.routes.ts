@@ -7,7 +7,7 @@ import {
   getRecipe,
   updateRecipe,
   deleteRecipe,
-} from '@controllers/recipe';
+} from "./recipe.controller";
 
 const router = Router();
 

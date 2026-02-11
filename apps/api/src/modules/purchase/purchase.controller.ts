@@ -3,7 +3,10 @@ import prisma from '@lib/prisma';
 import { RestaurantRequest } from '@middleware/restaurantOwnership';
 import { AppError } from '@middleware/errorHandler';
 import { asyncHandler } from '@utils/asyncHandler';
-import { createPurchaseSchema, updatePurchaseSchema } from '@/validation/purchase';
+import {
+  createPurchaseSchema,
+  updatePurchaseSchema,
+} from "./purchase.validations";
 
 export class PurchaseController {
   // POST /restaurants/:restaurantId/purchases

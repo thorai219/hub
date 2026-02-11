@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { RestaurantController } from "@controllers/restaurant";
+import { RestaurantController } from "./restaurant.controller";
 import { authMiddleware } from "@middleware/auth";
-import { validateRestaurantOwnership } from "@/middleware/restaurantOwnership";
+import { validateRestaurantOwnership } from "@middleware/restaurantOwnership";
 
 const router = Router();
 

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { PurchaseController } from '@controllers/purchase';
+import { PurchaseController } from "./purchase.controller";
 import { authMiddleware } from '@middleware/auth';
 import { validateRestaurantOwnership } from '@middleware/restaurantOwnership';
 

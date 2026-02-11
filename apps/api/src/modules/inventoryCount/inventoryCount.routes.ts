@@ -8,7 +8,7 @@ import {
   getLatestInventory,
   updateInventoryCount,
   deleteInventoryCount,
-} from '@controllers/inventoryCount';
+} from "./inventoryCount.controller";
 
 const router = Router();
 

@@ -7,7 +7,7 @@ import {
   getSalesRecord,
   updateSalesRecord,
   deleteSalesRecord,
-} from '@controllers/salesRecord';
+} from "./salesRecord.controller";
 
 const router = Router();
 

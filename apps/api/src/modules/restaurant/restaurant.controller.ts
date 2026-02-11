@@ -2,13 +2,13 @@ import { Response } from "express";
 import type { Restaurant } from "@repo/types";
 import prisma from "@lib/prisma";
 import { AppError } from "@middleware/errorHandler";
-import { AuthRequest } from "@/middleware/auth";
-import { RestaurantRequest } from "@/middleware/restaurantOwnership";
+import { AuthRequest } from "@middleware/auth";
+import { RestaurantRequest } from "@middleware/restaurantOwnership";
 import { asyncHandler } from "@utils/asyncHandler";
 import {
   createRestaurantSchema,
   updateRestaurantSchema,
-} from "@/validation/restaurant";
+} from "./restaurant.validations";
 
 export class RestaurantController {
   // POST /restaurants

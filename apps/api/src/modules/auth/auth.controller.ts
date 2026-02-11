@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import prisma from "@lib/prisma";
 import { hashPassword, comparePassword, generateToken } from "@utils/auth";
-import { signupSchema, loginSchema } from "@/validation/auth";
+import { signupSchema, loginSchema } from "./auth.validations";
 import { AuthRequest } from "@middleware/auth";
 import { AppError } from "@middleware/errorHandler";
 import { asyncHandler } from "@utils/asyncHandler";

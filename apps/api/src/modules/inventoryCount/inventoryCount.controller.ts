@@ -6,7 +6,7 @@ import prisma from "@lib/prisma";
 import {
   createInventoryCountSchema,
   updateInventoryCountSchema,
-} from "@/validation/inventoryCount";
+} from "./inventoryCount.validations";
 import { Decimal } from "decimal.js";
 
 export const createInventoryCount = asyncHandler(

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { IngredientController } from '@controllers/ingredient';
+import { IngredientController } from "./ingredient.controller";
 import { authMiddleware } from '@middleware/auth';
 import { validateRestaurantOwnership } from '@middleware/restaurantOwnership';
 
