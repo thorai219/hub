@@ -8,6 +8,7 @@ export interface AuthRequest extends Request {
     email: string;
     firstName?: string | null;
     lastName?: string | null;
+    role?: "USER" | "ADMIN" | "SUPPORT";
   };
   cookies: {
     token?: string;
@@ -36,6 +37,7 @@ export async function authMiddleware(
         email: true,
         firstName: true,
         lastName: true,
+        role: true,
       },
     });
 

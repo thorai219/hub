@@ -10,6 +10,7 @@ import recipeRoutes from "@modules/recipe/recipe.routes";
 import menuItemRoutes from "@modules/menuItem/menuItem.routes";
 import salesRecordRoutes from "@modules/salesRecord/salesRecord.routes";
 import inventoryCountRoutes from "@modules/inventoryCount/inventoryCount.routes";
+import importRoutes from "@modules/imports/imports.routes";
 import { errorHandler, notFoundHandler } from "@middleware/errorHandler";
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use("/restaurants", recipeRoutes);
 app.use("/restaurants", menuItemRoutes);
 app.use("/restaurants", salesRecordRoutes);
 app.use("/restaurants", inventoryCountRoutes);
+app.use("/restaurants", importRoutes);
 
 app.get("/health", (_, res) => {
   res.json({ status: "ok", service: "food-costing-api" });

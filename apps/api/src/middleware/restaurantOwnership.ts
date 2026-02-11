@@ -24,6 +24,9 @@ export async function validateRestaurantOwnership(
       throw new AppError(401, "Unauthorized");
     }
 
+    const isStaff =
+      req.user.role === "ADMIN" || req.user.role === "SUPPORT";
+
     const restaurantId = req.params.restaurantId;
 
     if (!restaurantId) {
@@ -33,7 +36,7 @@ export async function validateRestaurantOwnership(
     const restaurant = await prisma.restaurant.findFirst({
       where: {
         id: restaurantId,
-        userId: req.user.id,
+        ...(isStaff ? {} : { userId: req.user.id }),
       },
       select: {
         id: true,
